@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h2> Add Song to Playlist! </h2>
+<body>
+    <form method="POST">
+        <label>
+            Song ID: <input type="text" disabled value="{{ song.song_ID }}">
+            Song Name: <input type="text" disabled value="{{ song.song_name }}">
+            Playlist:
+            <select name="playlist">
+                {% for playlist in playlists %}
+                    <option value="{{ playlist.playlist_ID }}">{{ playlist.playlist_name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <input type="submit" value="Add to my Playlist" class="btn btn-primary">
+    </form>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: block;
+        text-align: center;
+    }
+
+    h1,h2 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

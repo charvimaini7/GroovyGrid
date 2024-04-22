@@ -1,0 +1,158 @@
+{% extends 'layout.html' %}
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1> Admin Dashboard </h1>    
+    <div class="heading">
+        <h2 class="text"> See all uploaded songs </h2>
+    </div>
+    <table class="table"> 
+        <thead>
+            All Songs and Albums
+            <tr>
+                <th> Song ID </th>
+                <th> Song Name </th>
+                <th> Album Name </th>
+                <th> Genre </th>
+                <th> Creator ID </th>
+                <th> Creator Name </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in result %}
+                <tr>
+                    <td>{{song.song_ID}}</td>
+                    <td>{{song.song_name}}</td>
+                    <td>{{song.album_name}}</td>
+                    <td>{{song.genre}}</td>
+                    <td>{{song.user_ID}}</td>
+                    <td>{{song.username}}</td>
+                    <td>
+                        <a class="btn btn-outline-danger" href ="{{ url_for('flagsong', id=song.song_ID) }}">
+                            <i class="fas fa-comment-xs"></i>
+                            Flag Song
+                        </a>
+                        {% if song.album_ID %}
+                        <a class="btn btn-outline-danger" href ="{{ url_for('flagalbum', id=song.album_ID) }}">
+                            <i class="fas fa-comment-xs"></i>
+                            Flag Album
+                        </a>
+                        {% endif %}
+                        <a class="btn btn-outline-danger" href="{{url_for('adminremovesong', id=song.song_ID)}}">
+                            <i class="fas fa-edit fa-xxs"></i>
+                            Remove Song
+                        </a>
+                        {% if song.album_ID %}
+                        <a class="btn btn-outline-danger" href ="{{ url_for('adminremovealbum', id=song.album_ID) }}">
+                            <i class="fas fa-comment-xs"></i>
+                            Remove Album
+                        </a>
+                        {% endif %}
+                        <a class="btn btn-outline-danger" href="{{url_for('flagcreator', id=song.username)}}">
+                            <i class="fas fa-trash fa-xs"></i>
+                            Flag Creator
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="heading">
+        <h3 class="text"> Performance Metrics of GroovyGrid </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Users</h5>
+                      <p class="card-text">{{user_count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Creators</h5>
+                      <p class="card-text">{{creator_count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Songs</h5>
+                      <p class="card-text">{{song_count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Total Albums</h5>
+                      <p class="card-text">{{album_count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"> Song with Highest Rating</h5>
+                        {% if highest_rated_song %}
+                            <p class="card-text"> Song Name: {{ highest_rated_song.Song.song_name }}</p>
+                            <p class="card-text"> Average Song Rating: {{ highest_rated_song.SongRating.song_rating }}</p>
+                            <p class="card-text"> Date Created: {{ highest_rated_song.Song.date_created }}</p>
+                            {% else %}
+                            <p class="card-text">No songs found with ratings!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Most Rated Song</h5>
+                        {% if highest_count_song %}
+                            <p class="card-text"> Song Name: {{ highest_count_song.Song.song_name }}</p>
+                            <p class="card-text"> No of times song has been rated: {{ highest_count_song.SongRating.song_count }}</p>
+                            <p class="card-text"> Song Rating: {{ highest_count_song.SongRating.song_rating }}</p>
+                        {% else %}
+                            <p class="card-text">No songs found with ratings!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block style %}
+<style>
+    .search-bar{
+        width: 500px; 
+        height: 25px; 
+        font-size: 16px
+    }
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    .card {
+        width: 20rem;
+        margin: 5%;
+        background-color: rgb(0, 136, 255);
+        color: white;
+        border: 3px solid #000;
+        border-radius: 5px; 
+    }
+    table {
+        border: 5px solid #000;
+        font-size: 15px;
+        text-align: left;
+    }
+</style>
+{% endblock %}

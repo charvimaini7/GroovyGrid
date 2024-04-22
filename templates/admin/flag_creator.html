@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h1> Flag a creator </h1>
+<body>
+    <head> 
+        <title> Flag a creator at GroovyGrid</title>
+        <label> 
+            Specify creator to be flagged: <input type="text" class="text" disabled value="{{user.username}}"> 
+        </label>
+        <label> 
+            Specify reason: <input type="text" class="text" name="reason" id="reason"> 
+        </label>
+        <form method="POST" action="{{ url_for('flagcreator', id = user.username) }}">
+            <input type="submit" value="Flag Creator" class="btn btn-primary">
+        </form>
+    </head>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+</style>
+{% endblock %}

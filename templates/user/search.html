@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1> Search Results </h1>
+    <h2> GroovyGrid </h2>
+    <h3> We tried our best to search for "{{ q }}". Here's what we could find: </h3>
+    {% if results %}
+        {% for song in results %}
+            <p>Song Name: {{ song.song_name }}</p> 
+            <p>Lyrics: {{ song.lyrics }}</p>
+            <p>Duration: {{ song.duration }}</p>
+            <p>Artist: {{ song.username }}</p>
+            {% if song.album_name %}
+                <p>Album Name: {{ song.album_name }}</p>
+                <p>Genre: {{ song.genre }}</p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p> Sorry, no results found for "{{ q }}" </p>
+    {% endif %}
+{% endblock %}
+{% block style %}
+<style>
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1, h2{
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    p {
+        font-size: large;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

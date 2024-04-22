@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h1> Listen to Song! </h1>
+<body>
+    <h2>Song Details </h2>
+        <p>Song Name: {{ newSong.song_name }}</p>
+        <p>Song Lyrics: {{ newSong.lyrics }}</p>
+        <p>Duration: {{ newSong.duration }}</p>
+        Play Song:
+        <audio controls>
+        <source src="/static/songs/{{newSong.song_name}}.mp3" type="audio/mpeg"> 
+        Your browser does not support the audio element.
+    </audio>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: block;
+        text-align: center;
+    }
+
+    h1{
+        margin-top: 70px;
+        text-align: center;
+    }
+    h2{
+        margin-top: 50px;
+        text-align: center;
+    }
+    p{
+        margin-top: 20px;
+        text-align: left;
+        font-size: large;
+    }
+    a{
+        text-align: center;
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

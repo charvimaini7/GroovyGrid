@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h1> Remove an album </h1>
+<body>
+    <head> 
+        <title> Remove an album from GroovyGrid</title>
+        <label> 
+            Specify album to be removed: <input type="text" class="text" disabled value="{{album.album_name}}"> 
+        </label>
+        <label> 
+            Specify reason: <input type="text" class="text" name="reason" id="reason"> 
+        </label>
+        <form method="POST" action="{{ url_for('adminremovealbum', id=song.song_ID) }}">
+            <button type="submit">Remove Album</button>
+        </form>
+    </head>
+    <a href="/admindashboard">Back to Admin Dashboard</a>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,44 @@
+{%  extends 'layout.html' %}
+
+{% block title %}
+Edit your album - GroovyGrid
+{% endblock %}
+
+{% block content %}
+<h1> Edit album name </h1>
+<form method ="POST">
+    <label>
+        Album ID: <input type="text" disabled value="{{ album.album_ID }}">
+    </label>
+    <label>
+        Old Album Name: <input type="text" disabled value="{{ album.album_name }}">
+    </label>
+    <label for="username" class="form-label"> New Album Name:
+        <input type="text" name="aname" id="aname" class="form-control" required/>
+    </label>
+    <br>
+    <input type="submit" value="Save Changes" class="btn btn-primary">
+</form>
+<a href="/creator/creatoralbums">Back to Dashboard</a>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: block;
+        text-align: center;
+    }
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    a{
+        text-align: center;
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

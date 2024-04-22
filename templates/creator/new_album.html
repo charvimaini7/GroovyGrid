@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1> Create a new Album</h1>
+    <div class="heading">
+        </div>
+        <form method ="POST">
+            <label for="album" class="form-label"> Enter new album name:
+                <input type="text" name="album" id="album" class="form-control" required/>
+            </label>
+            <label for="album" class="form-label"> Enter genre:
+                <input type="text" name="genre" id="genre" class="form-control" required/>
+            </label>
+            <br>
+            <input type="submit" value="Create album" class="btn btn-primary">
+        </form>
+        <a href="/creatordashboard">Back to Creator Dashboard</a>
+{% endblock %}
+{% block style %}
+<style>
+    .search-bar{
+        width: 500px; 
+        height: 25px; 
+        font-size: 16px
+    }
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    form
+    {
+        display: block;
+        text-align: center;
+    }
+    a{
+        text-align: center;
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

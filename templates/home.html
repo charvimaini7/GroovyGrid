@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block title %}
+Login - GroovyGrid
+{% endblock %}
+{% block content %}
+<h1> Welcome to Groovy Grid! </h1>
+<h2> Your favourite web music app </h2>
+<h3> Stream bollywood, tollywood, punjabi music and more...</h3>
+<h3> New to GroovyGrid? Sign up <a href="/register"> here! </a> </h3>
+<h3> Already have an account? <a href="/login"> Login </a> </h3>
+<div class="image-container" >
+    <img src="static/6.jpg" alt="diljit dosanjh">
+    <img src="static/9.jpg" alt="rrr">
+    <img src="static/7.jpg" alt="chaleya">
+    <img src="static/8.jpg" alt="ap dhillion">
+</div>
+{% endblock %}
+{% block style %}
+<style>    
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1, h2, h3{
+        font-family:Arial, Helvetica, sans-serif;
+        margin-top: 10px;
+        text-align: center;
+        size:110px;
+        font-weight:bold;
+        color: black;
+    }
+    body {
+        background-image: url('static/10.jpg'); 
+        background-size: cover;
+        background-position: center;
+    }
+    .image-container {
+        display: flex;
+        justify-content: space-between; 
+        margin: 20px; 
+    }
+    .image-container img {
+        width: 250px;
+        height: auto; 
+    }
+</style>
+{% endblock %}

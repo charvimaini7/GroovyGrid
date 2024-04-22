@@ -1,0 +1,60 @@
+{%  extends 'layout.html' %}
+{% block title %}
+Edit lyrics - GroovyGrid
+{% endblock %}
+
+{% block content %}
+<h1> Edit your song </h1>
+<form method ="POST">
+    <label>
+        Song ID: <input type="text" disabled value="{{ song.song_ID }}">
+        Old Song Name: <input type="text" disabled value="{{ song.song_name }}">
+        Old Duration: <input type="text" disabled value="{{ song.duration }}">
+        Old Lyrics: <input type="text" disabled value="{{ song.lyrics }}"> 
+        Date: <input type="text" disabled value="{{ song.date_created }}">
+        <br>
+        <br>
+    </label>
+    <label for="username" class="form-label"> Song Name:
+        <input type="text" name="sname" id="sname" class="form-control" required/>
+    </label>
+    <label for="username" class="form-label"> Duration:
+        <input type="integer" name="duration" id="duration" class="form-control" required/>
+    </label>
+    <label for="username" class="form-label"> Lyrics:
+        <input type="text" name="lyrics" id="lyrics" class="form-control" required/>
+    </label>
+    <label for="username" class="form-label"> Date:
+        <input type="date" name="date" id="date" class="form-control" required/>
+    </label>
+    <input type="submit" value="Save Changes" class="btn btn-primary">
+</form>
+<a href="/creatordashboard">Back to Creator Dashboard</a>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: block;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 30px;
+        text-align: center;
+    }
+    a{
+        text-align: center;
+        font-size: large;
+        color: black;
+    }
+    label{
+        text-align: center;
+        font-size: medium;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

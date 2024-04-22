@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h1> Flag an album </h1>
+<body>
+    <head> 
+        <title> Flag an album from GroovyGrid</title>
+        <label> 
+            Album Name: <input type="text" class="text" disabled value="{{album.album_name}}"> 
+        </label>
+        <label> 
+            Specify reason: <input type="text" class="text" name="reason" id="reason"> 
+        </label>
+        <form method="POST" action="{{ url_for('flagalbum', id=album.album_ID) }}">
+            <input type="submit" value="Flag Album" class="btn btn-primary">
+        </form>
+    </head>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+</style>
+{% endblock %}

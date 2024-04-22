@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h2> Assign Song to Album </h2>
+<body>
+    <form method="POST" action="{{ url_for('assignsong', id = song.song_ID)}}">
+        <label>
+            Song ID: <input type="text" disabled value="{{ song.song_ID }}" name="song_id">
+            Song Name: <input type="text" disabled value="{{ song.song_name }}">
+            Select album to assign song to:
+            <select name="album_id">
+                {% for album in myAlbums %}
+                    <option value="{{ album.album_ID }}">{{ album.album_name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit" class="btn btn-primary">Assign Song</button>
+    </form>
+    <a href="/creatordashboard">Back to Creator Dashboard</a>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

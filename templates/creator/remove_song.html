@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h1> Remove a song </h1>
+<body>
+    <head> 
+        <title> Remove a song from your Dashboard </title>
+        <label> 
+            Specify song to be deleted: <input type="text" class="text"> 
+        </label>
+        <form method="POST" action="/delete_song/{{ song.id }}">
+            <button type="submit">Delete Song</button>
+        </form>
+    </head>
+    <a href="/creatordashboard">Back to Dashboard</a>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

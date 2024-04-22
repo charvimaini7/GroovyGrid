@@ -1,0 +1,40 @@
+{%  extends 'layout.html' %}
+{% block title %}
+Rate Song - GroovyGrid
+{% endblock %}
+
+{% block content %}
+<h1> Rate song </h1>
+<form method ="POST">
+    <label>
+        Song ID: <input type="text" disabled value="{{ song.song_ID }}">
+        Song Name: <input type="text" disabled value="{{ song.song_name }}">
+    </label>
+    <label for="songr" class="form-label"> Song Rating:
+        <input type="number" name="songr" id="songr" min="0" max="5" class="form-control" required/>
+    </label>
+    <br>
+    <input type="submit" value="Save my Rating" class="btn btn-primary">
+</form>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: block;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

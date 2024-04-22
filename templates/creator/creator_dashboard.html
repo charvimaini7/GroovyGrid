@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1>{{ current_user.username }}'s Creator Dashboard </h1>
+    <h3> Search your favourite music </h3>
+    <form action="/search" method="GET">
+        <input class = "search-bar" type="text" name="query" placeholder="Search songs, ratings, genre..." required>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div class="heading">
+        <h2 class="text-muted"> My songs </h2>
+        <a href="{{url_for('userdashboard')}}"  class="btn-success"> 
+            <i class="fas fa-plus fa-xs"></i>
+            Stream Music as a User!
+        </a>
+        <a href="{{url_for('addlyrics')}}" class="btn btn-primary">
+            <i class="fas fa-comment-xs"></i>
+            Add a new song/lyrics
+        </a>
+        <a href="{{url_for('createalbum')}}"  class="btn btn-primary"> 
+            <i class="fas fa-plus fa-xs"></i>
+            Create a new Album
+        </a>
+        <a href="{{url_for('creatoralbums')}}"  class="btn btn-primary"> 
+            <i class="fas fa-plus fa-xs"></i>
+            Go to my Albums
+        </a>
+    </div>
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th> Song ID </th>
+                <th> Song Name </th>
+                <th> Date </th>
+                <th> Lyrics </th>
+                <th> Album Name </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>{{song.song_ID}}</td>
+                    <td>{{song.song_name}}</td>
+                    <td>{{song.date_created}}</td>
+                    <td>{{song.lyrics}}</td>
+                    <td>{{song.album_name}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{{url_for('editsong', id=song.song_ID)}}">
+                            <i class="fas fa-edit fa-xs"></i>
+                            Edit song
+                        </a>
+                        <a class="btn btn-outline-danger" href="{{url_for('removesong', id=song.song_ID)}}">
+                            <i class="fas fa-trash fa-xs"></i>
+                            Remove song
+                        </a>
+                        {% if song.album_ID is not none %}
+                            <a class="btn btn-outline-danger" href="{{ url_for('deletefromalbum', id=song.song_ID, id1 = song.album_ID) }}">
+                                <i class="fas fa-edit fa-xs"></i>
+                                Delete song from album
+                            </a>
+                        {% else %}
+                            <a class="btn btn-outline-success" href="{{url_for('assignsong', id=song.song_ID)}}">
+                                <i class="fas fa-trash fa-xs"></i>
+                                Assign song to album
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block style %}
+<style>
+    .search-bar{
+        width: 500px; 
+        height: 25px; 
+        font-size: 16px
+    }
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+    table {
+        border: 5px solid #000;
+        font-size: 15px;
+        text-align: left;
+    }
+</style>
+{% endblock %}

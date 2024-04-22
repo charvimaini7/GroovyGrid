@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1> {{current_user.username}}'s Dashboard </h1>
+    <h3> Search your favourite music </h3>
+    <form action="/search" method="GET">
+        <input class ="search-bar" type="text" name="query" id="query" placeholder="Search by song, artists, genres, ratings..." required>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div class="heading">
+        <h2 class="text-muted"> GroovyGrid - All Songs </h2>
+        {% if current_user.creator_ID %}
+            <a href="{{url_for('creatordashboard')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Go to Creator dashboard!
+            </a>
+        {% else %}
+            <a href="{{url_for('creator')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Register as a Creator today!
+            </a>
+        {% endif %} 
+        <a href="{{url_for('playlist')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Go to my Playlists!
+            </a>
+        </div>
+    <table class="table"> 
+        <thead>
+            All Songs and Albums
+            <tr>
+                <th> Song Name </th>
+                <th> Album Name </th>
+                <th> Genre </th>
+                <th> Artist </th>
+                <th> Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>{{song.song_name}}</td>
+                    <td>{{song.album_name}}</td>
+                    <td>{{song.genre}}</td>
+                    <td>{{song.username}}</td>
+                    <td>
+                        <a href="{{url_for('readlyrics', id = song.song_ID)}}" class="btn btn-outline-primary">
+                            <i class="fas fa-comment-xs"></i>
+                            Play Song and Read Lyrics
+                        </a>
+                        <a class="btn btn-outline-primary" href="{{url_for('addsong',id=song.song_ID)}}">
+                            <i class="fas fa-edit fa-xs"></i>
+                            Add to your Playlist
+                        </a>
+                        <a class="btn btn-outline-primary" href="{{url_for('ratesong',id=song.song_ID)}}">
+                            <i class="fas fa-edit fa-xs"></i>
+                            Rate a Song
+                        </a>
+                    </td>       
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block style %}
+<style>
+    .search-bar{
+        width: 500px; 
+        height: 25px; 
+        font-size: 16px
+    }
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+    table {
+        border: 5px solid #000;
+        font-size: 15px;
+        text-align: left;
+    }
+</style>
+{% endblock %}

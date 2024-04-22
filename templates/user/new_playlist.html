@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+{% block title %}
+    GroovyGrid
+{% endblock %}
+{% block content %}
+    <h1> {{current_user.username}}'s Dashboard </h1>
+    <div class="heading">
+        <h2 class="text"> Create playlist </h2>
+        {% if current_user.creator_ID %}
+            <a href="{{url_for('creatordashboard')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Go to Creator dashboard!
+            </a>
+        {% else %}
+            <a href="{{url_for('creator')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Register as a Creator today!
+            </a>
+        {% endif %} 
+        <a href="{{url_for('userdashboard')}}"  class="btn btn-primary">
+                <i class="fas fa-plus fa-xs"></i>
+                Go to User Dashboard!
+            </a>
+        </div>
+        <form method ="POST">
+            <label for="playlist" class="form-label"> Enter playlist name:
+                <input type="text" name="playlist" id="playlist" class="form-control" required/>
+            </label>
+            <br>
+            <input type="submit" value="Create my playlist" class="btn btn-primary">
+        </form>
+{% endblock %}
+{% block style %}
+<style>
+    .heading {
+        display: flex;
+        justify-content: space-between;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    a {
+        font-size: large;
+        color: black;
+    }
+    form
+    {
+        display: block;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}

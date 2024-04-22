@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Welcome to Groovy Grid!
+{% endblock %}
+
+{% block content %}
+<h2> Delete song from your Playlist </h2>
+<body>
+    <form method="POST">
+        <label>
+            Song ID: <input type="text" disabled value="{{ song.song_ID }}">
+            Song Name: <input type="text" disabled value="{{ song.song_name }}"> 
+            Playlist: <input type="text" disabled value="{{ playlist.playlist_name }}">
+        </label>
+        <button type="submit">Delete Song</button>
+    </form>
+    <a href="/userdashboard">Back to Dashboard</a>
+</body>
+{% endblock %}
+{% block style %}
+<style>
+    form {
+        display: flex;
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 70px;
+        text-align: center;
+    }
+    body {
+        background-image: url('static/12.jpg'); 
+        background-size: cover;
+    }
+</style>
+{% endblock %}
