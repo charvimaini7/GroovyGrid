@@ -13,3 +13,5 @@ Technologies Used: <br>
 •	HTML/CSS, Jinja2, Bootstrap: To display the frontend content and styling <br>
 •	SQLite: Database used for modelling of the web application <br>
 </p>
+
+<p> Course Grade Received: S (10/10) </p>
